@@ -11,21 +11,22 @@
     "not op_mini all"
   ],
   "scripts": {
-    "build": "node ./buildScript",
     "start-server": "nodemon ./server.js --watch *",
     "devstart": "npm run start-server --kill-others --kill-others-on-fail",
     "start": "node ./server.js"
   },
   "dependencies": {
+    "@types/express": "4.17.6",
     "body-parser": "1.19.0",
     "compression": "1.7.4",
     "cookie-parser": "^1.4.5",
     "cors": "2.8.5",
     "express": "4.17.1",
+    "fs-extra": "^10.0.0",
     "helmet": "3.22.0",
     "knex": "0.20.13",
-    "sqlite3": "4.1.1",
-    "@types/express": "4.17.6",
+    "pg": "^8.7.1",
+    "react-scripts": "^4.0.3",
     "typescript": "3.8.3"
   },
   "devDependencies": {

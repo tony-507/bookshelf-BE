@@ -1,14 +1,12 @@
-// Import path module
-const path = require('path')
-
-// Get the location of database.sqlite file
-const dbPath = path.resolve(__dirname, 'db/database.sqlite')
-
-// Create connection to SQLite database
+// Create connection to Postgres database
 const knex = require('knex')({
-  client: 'sqlite3',
+  client: 'pg',
   connection: {
-    filename: dbPath,
+    "host": "ec2-44-195-201-3.compute-1.amazonaws.com",
+    "user": "lywfuanknbnvat",
+    "password": "3d97d208fcdfa7babbb0369d9f42b8bb996b661c293ed65be02db1c89e4c8d38",
+    "database": "d4i1256j49i9bc",
+    ssl: { rejectUnauthorized: false }
   },
   useNullAsDefault: true
 })
@@ -27,7 +25,7 @@ knex.schema
         // and increment "id" with every new record (book)
         return knex.schema.createTable('books', (table)  => {
           table.increments('id').primary()
-          table.integer('author')
+          table.string('author')
           table.string('title')
           table.integer('rating')
           table.string('status')
@@ -68,13 +66,29 @@ knex.schema
           table.string('email')
           table.string('role')
         })
-        .then(() => {
-          // Log success message
-          console.log('Table \'accounts\' created')
-        })
-        .catch((error) => {
-          console.error(`There was an error creating table: ${error}`)
-        })
+          .then(() => {
+            return knex('accounts')
+              .insert({
+                'username': 'admin001',
+                'password': 'password',
+                'email': 'admin001@gmail.com',
+                'role': 'admin'
+              })
+              .then(() => {
+                // Display success message
+                console.log(`Admin account created.`)
+              })
+              .catch(err => {
+                console.error(`Error in creating admin account: ${err}`)
+              })
+          })
+          .then(() => {
+            // Log success message
+            console.log('Table \'accounts\' created')
+          })
+          .catch((error) => {
+            console.error(`There was an error creating table: ${error}`)
+          })
       }
     })
     .then(() => {
