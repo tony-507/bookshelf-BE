@@ -1,15 +1,26 @@
 // Create connection to Postgres database
-const knex = require('knex')({
+const connectionDetail = {
   client: 'pg',
   connection: {
-    "host": "ec2-44-195-201-3.compute-1.amazonaws.com",
-    "user": "lywfuanknbnvat",
-    "password": "3d97d208fcdfa7babbb0369d9f42b8bb996b661c293ed65be02db1c89e4c8d38",
-    "database": "d4i1256j49i9bc",
-    ssl: { rejectUnauthorized: false }
+    "host": "localhost",
+    "user": "prod",
+    "password": "password",
+    "database": "bookshelfserver"
   },
   useNullAsDefault: true
-})
+}
+// const connectionDetail = {
+//   client: 'pg',
+//   connection: {
+//     "host": "ec2-44-195-201-3.compute-1.amazonaws.com",
+//     "user": "lywfuanknbnvat",
+//     "password": "3d97d208fcdfa7babbb0369d9f42b8bb996b661c293ed65be02db1c89e4c8d38",
+//     "database": "d4i1256j49i9bc",
+//     ssl: { rejectUnauthorized: false }
+//   },
+//   useNullAsDefault: true
+// }
+const knex = require('knex')(connectionDetail)
 
 // Create a table in the database called "books"
 knex.schema
