@@ -21,7 +21,7 @@ const app = express()
 // Note: Keep this at the top, above routes
 app.use(cors({
   credentials: true,
-  origin: 'http://localhost:3000'
+  origin: 'https://bkmangement.herokuapp.com'
 }))
 app.use(helmet())
 app.use(compression())
