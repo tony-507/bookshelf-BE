@@ -11,7 +11,7 @@ router.get('/check',accountsRoutes.checkAuth)
 
 router.get('/login',accountsRoutes.checkLogin)
 
-router.get('/createCookie',accountsRoutes.setCookie)
+router.get('/cookie',accountsRoutes.setCookie)
 
 router.get('/logout',accountsRoutes.checkLogout)
 

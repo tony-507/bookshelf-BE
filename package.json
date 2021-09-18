@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "start-server": "nodemon ./server.js --watch *",
-    "devstart": "npm run start-server --kill-others --kill-others-on-fail",
+    "dev": "npm run start-server --kill-others --kill-others-on-fail",
     "start": "node ./server.js"
   },
   "dependencies": {
