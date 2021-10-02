@@ -21,15 +21,16 @@ const app = express()
 // Note: Keep this at the top, above routes
 
 // CORS config for prod
-// app.use(cors({
-//   credentials: true,
-//   origin: 'https://bkmangement.herokuapp.com'
-// }))
-// CORS config for dev
 app.use(cors({
   credentials: true,
-  origin: 'http://localhost:5000'
+  origin: 'https://bkmangement.herokuapp.com'
 }))
+
+// CORS config for dev
+// app.use(cors({
+//   credentials: true,
+//   origin: 'http://localhost:3000'
+// }))
 
 app.use(helmet())
 app.use(compression())
