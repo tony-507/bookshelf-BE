@@ -72,30 +72,31 @@ exports.booksReset = async (req, res) => {
     })
 }
 
-// Borrow a book
-exports.booksBorrow = async (req, res) => {
-  knex('books')
-    .where('id', req.body.id)
-    .update('status', req.body.username)
-    .then(() => {
-      res.json({ message: `Borrow book with id ${req.body.id} successfully` })
-    })
-    .catch(err => {
-      res.json({ message: `Error in borrowing book with id ${req.body.id}: ${err}.`})
-    })
-}
-
-// Return a book
-exports.booksReturn = async (req, res) => {
-  knex('books')
-    .where('id', req.body.id)
-    .update('status', 'On Shelf')
-    .then(() => {
-      res.json({ message: `Return book with id ${req.body.id} successfully` })
-    })
-    .catch(err => {
-      res.json({ message: `Error in returning book with id ${req.body.id}: ${err}.`})
-    })
+// Update book status, borrow or return
+exports.booksStatus = async (req, res) => {
+  let username = req.params.username
+  if (username) {
+    knex('books')
+      .where('id', req.params.id)
+      .update('status', req.params.username)
+      .then(() => {
+        res.json({ message: `Borrow book with id ${req.params.id} successfully` })
+      })
+      .catch(err => {
+        res.json({ message: `Error in borrowing book with id ${req.params.id}: ${err}.`})
+      })
+  }
+  else {
+    knex('books')
+      .where('id', req.params.id)
+      .update('status', 'On Shelf')
+      .then(() => {
+        res.json({ message: `Return book with id ${req.params.id} successfully` })
+      })
+      .catch(err => {
+        res.json({ message: `Error in returning book with id ${req.params.id}: ${err}.`})
+      })
+  }
 }
 
 // Fetch first five items of a type
@@ -128,4 +129,11 @@ exports.bookFilter = async (req, res) => {
   query
     .then(data => res.json(data))
     .catch(err => res.json({message: `Error in filtering books: ${err}`}))
+}
+
+exports.fetchById = async (req, res) => {
+  knex('books')
+    .where('id', req.params.id)
+    .then(data => res.json(data))
+    .catch(err => res.json({message: `${err}`}))
 }

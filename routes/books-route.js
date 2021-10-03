@@ -15,13 +15,13 @@ router.put('/delete', booksRoutes.booksDelete)
 
 router.put('/reset', booksRoutes.booksReset)
 
-router.post('/borrow', booksRoutes.booksBorrow)
-
-router.post('/return', booksRoutes.booksReturn)
+router.post('/status/id/:id/:username?', booksRoutes.booksStatus)
 
 router.get('/top5', booksRoutes.topFive)
 
 router.get('/filter', booksRoutes.bookFilter)
+
+router.get('/id/:id', booksRoutes.fetchById)
 
 // Export router
 module.exports = router
