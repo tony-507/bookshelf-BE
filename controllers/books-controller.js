@@ -133,6 +133,7 @@ exports.bookFilter = async (req, res) => {
 
 exports.fetchById = async (req, res) => {
   knex('books')
+    .select('*')
     .where('id', req.params.id)
     .then(data => res.json(data))
     .catch(err => res.json({message: `${err}`}))

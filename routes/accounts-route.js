@@ -7,14 +7,14 @@ const accountsRoutes = require('./../controllers/accounts-controller.js')
 // Create router
 const router = express.Router()
 
-router.get('/check',accountsRoutes.checkAuth)
+router.get('/existence/:username/:password?',accountsRoutes.checkAuth)
 
 router.get('/login',accountsRoutes.checkLogin)
 
-router.get('/cookie',accountsRoutes.setCookie)
+router.get('/cookie/:role/:username',accountsRoutes.setCookie)
 
-router.get('/logout',accountsRoutes.checkLogout)
+router.get('/logout/:role/:username',accountsRoutes.checkLogout)
 
-router.post('/new',accountsRoutes.accountCreate)
+router.post('/new/:username/:password/:email',accountsRoutes.accountCreate)
 
 module.exports = router
