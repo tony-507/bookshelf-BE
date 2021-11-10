@@ -7,6 +7,7 @@ exports.booksAll = async (req, res) => {
   knex
     .select('*') // select all records
     .from('books') // from 'books' table
+    .orderBy('id')
     .then(userData => {
       // Send books extracted from database in response
       res.json(userData)
@@ -127,6 +128,7 @@ exports.bookFilter = async (req, res) => {
   }
 
   query
+    .orderBy('id')
     .then(data => res.json(data))
     .catch(err => res.json({message: `Error in filtering books: ${err}`}))
 }
@@ -135,6 +137,7 @@ exports.fetchById = async (req, res) => {
   knex('books')
     .select('*')
     .where('id', req.params.id)
+    .orderBy('id')
     .then(data => res.json(data))
     .catch(err => res.json({message: `${err}`}))
 }
